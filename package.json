@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/erlang-ls/vscode/issues"
   },
-  "main": "./client/out/client.js",
+  "main": "./client/out/extension.js",
   "scripts": {
     "package": "vsce package",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -100,6 +100,34 @@
         "language": "erlang",
         "scopeName": "source.erlang",
         "path": "./grammar/Erlang.plist"
+      }
+    ],
+    "taskDefinitions": [
+      {
+        "type": "rebar3",
+        "when": "processExecutionSupported",
+        "required": [
+          "task"
+        ],
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "The rebar3 task to run",
+            "examples": [
+              "compile",
+              "eunit",
+              "xref"
+            ]
+          },
+          "profile": {
+            "type": "string",
+            "description": "The rebar3 profile to run this task in",
+            "examples": [
+              "test",
+              "docs"
+            ]
+          }
+        }
       }
     ]
   },
